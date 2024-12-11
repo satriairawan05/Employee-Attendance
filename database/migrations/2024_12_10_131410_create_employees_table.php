@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->references('id')->on('users')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->bigInteger('user_id')->references('id')->on('users')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('dob')->nullable();
             $table->string('city')->nullable();
             $table->string('status')->nullable();

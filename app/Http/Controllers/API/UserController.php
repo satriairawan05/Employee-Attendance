@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::select('name','status','email','created_at as created_date')->get();
 
         return response()->json([
             'status' => 'success',

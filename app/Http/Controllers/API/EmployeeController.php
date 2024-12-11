@@ -14,7 +14,15 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data = Employee::get();
+        $data = Employee::select(['dob','city','user_id'])->with(['user' => function ($query) {
+            $query->select(
+                'id',
+                'name',
+                'email',
+                'status',
+                \Illuminate\Support\Facades\DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as created_date')
+            );
+        },])->get();
 
         return response()->json([
             'status' => 'success',
